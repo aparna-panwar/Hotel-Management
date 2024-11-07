@@ -1,6 +1,6 @@
 package com.hotel.management.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,11 +11,16 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Table(name = "hotel")
 public class Hotel {
 
+    @Id
     private long id;
     private String name;
-    private String city;
+
+    @OneToOne
+    @JoinColumn(name="city_id")
+    private City city;
     private String country;
     private String postalCode;
     private long phoneNumber;
